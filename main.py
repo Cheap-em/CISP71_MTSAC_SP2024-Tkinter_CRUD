@@ -1,5 +1,5 @@
 # Import the required libraries
-import sqlite3 as sql
+import psycopg as psql
 from tkinter import *
 from PIL import ImageTk, Image
 
