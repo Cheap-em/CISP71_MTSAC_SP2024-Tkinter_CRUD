@@ -14,7 +14,8 @@ def addRecord():
     conn = psql.connect(path+"Quizzing.db")
     try:
         c=conn.cursor()
-        c.execute()
+        c.execute("Inserting values (?,?,?)",
+                  (fNameEN.get(),lNameEN.get(),uNameEN.get()))
         conn.commit()
         print("Your record has added successfully")
     except:
