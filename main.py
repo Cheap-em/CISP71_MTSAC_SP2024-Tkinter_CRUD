@@ -1,6 +1,5 @@
 # Import the required libraries
-import psycopg2 as psql
-import psycopg2.sql as sql
+import sqlite3 as psql
 from tkinter import *
 from PIL import ImageTk, Image
 
@@ -12,10 +11,7 @@ path = "/home/howard/Documents/Projects/CISP71_MTSAC_SP2024-Tkinter_CRUD/data/"
 # Add the addRecord function
 def addRecord():
     # connect to the DB via Postgres SQL
-    conn = psql.connect(dbname = "Quizzing", 
-                        user = "postgres", 
-                        host= "localhost",
-                        password = "postgres")
+    conn = psql.connect(path+"Quizzing.db")
     try:
         c=conn.cursor()
         c.execute()
