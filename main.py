@@ -15,7 +15,7 @@ def addRecord():
     try:
         c=conn.cursor()
         c.execute("insert into primary values (?,?,?)",
-                  (fNameEN.get(),lNameEN.get(),uNameEN.get()))
+                  (fNameEN.get(),lNameEN.get(),uNameEN.get() ) )
         conn.commit()
         print("Your record has added successfully")
     except:
@@ -24,6 +24,7 @@ def addRecord():
     conn.close()
 
 def displayRecord():
+    # Display the record
     conn=psql.connect(path+"Quizzing.db")
     try:
         c=conn.cursor()
