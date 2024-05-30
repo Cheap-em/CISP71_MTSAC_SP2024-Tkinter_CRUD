@@ -28,7 +28,7 @@ def addRecord():
 main = Tk()
 main.title("Tkinter CRUD Project")
 main.geometry("400x400")
-main.iconbitmap()
+main.iconbitmap(path+"icons/Boss.ico")
 
 # Create the button(s)
 addBT=Button(main, text="Add Record", command=addRecord)
