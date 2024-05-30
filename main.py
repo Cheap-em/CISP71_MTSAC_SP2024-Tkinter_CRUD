@@ -14,7 +14,7 @@ def addRecord():
     conn = psql.connect(path+"Quizzing.db")
     try:
         c=conn.cursor()
-        c.execute("Inserting values (?,?,?)",
+        c.execute("insert into primary values (?,?,?)",
                   (fNameEN.get(),lNameEN.get(),uNameEN.get()))
         conn.commit()
         print("Your record has added successfully")
@@ -23,12 +23,37 @@ def addRecord():
         conn.rollback()
     conn.close()
 
+def displayRecord():
+    conn=psql.connect(path+"Quizzing.db")
+    try:
+        c=conn.cursor()
+        c.execute("select *,oid from main")
+        records=c.fetchall()
+        #as you see the records is a list with tuples inside it
+        print(records)
+        
+        #loop throu results
+        print_records=''
+        for record in records:
+            print_records +=str(record[0])+" "+ str(record[1])+" "+str(record[2])+"\n"
+        query_label=Label(main,text=print_records)
+        query_label.grid(row=8,column=0,columnspan=2)
+        
+        #commit changes
+        conn.commit()
+        #close connection
+        conn.close()
+                 
+    except:
+         print("error in operation")
+         conn.rollback()
+    conn.close()
 
 # Get the properties
 main = Tk()
 main.title("Tkinter CRUD Project")
 main.geometry("400x400")
-main.iconbitmap(path+"icons/Boss.ico")
+main.iconbitmap()
 
 # Create the button(s)
 addBT=Button(main, text="Add Record", command=addRecord)
