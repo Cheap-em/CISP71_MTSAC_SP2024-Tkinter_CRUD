@@ -58,6 +58,7 @@ main.iconbitmap()
 
 # Create the button(s)
 addBT=Button(main, text="Add Record", command=addRecord)
+displayRecordBT=Button(main, text="Display Record", command=displayRecord)
 
 # Create labels
 fNameLB=Label(main,text="First Name")
@@ -81,6 +82,7 @@ uNameEN.grid(row=2, column=1)
 
 # Specify the button grids
 addBT.grid(row=4, column=0)
+displayRecordBT.grid(row=4, column=1)
 
 # Call the mainloop
 main.mainloop()
