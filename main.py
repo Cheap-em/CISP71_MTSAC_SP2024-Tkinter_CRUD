@@ -14,12 +14,12 @@ def addRecord():
     conn = psql.connect(path+"Quizzing.db")
     try:
         c=conn.cursor()
-        c.execute("insert into primary values (?,?,?)",
-                  (fNameEN.get(),lNameEN.get(),uNameEN.get() ) )
+        for fillings in fNameEN.get(),lNameEN.get(),uNameEN.get():
+            c.execute(f"INSERT INTO primary VALUES ({fillings})")
         conn.commit()
         print("Your record has added successfully")
     except:
-        print("Bad record")
+        print("Error 1: error in operation")
         conn.rollback()
     conn.close()
 
@@ -28,7 +28,7 @@ def displayRecord():
     conn=psql.connect(path+"Quizzing.db")
     try:
         c=conn.cursor()
-        c.execute("select *,oid from main")
+        c.execute("select * from primary")
         records=c.fetchall()
         #as you see the records is a list with tuples inside it
         print(records)
@@ -46,7 +46,7 @@ def displayRecord():
         conn.close()
                  
     except:
-         print("error in operation")
+         print("Error 1: error in operation")
          conn.rollback()
     conn.close()
 
