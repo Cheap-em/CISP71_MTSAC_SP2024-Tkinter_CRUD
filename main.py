@@ -14,8 +14,7 @@ def addRecord():
     conn = psql.connect(path+"Quizzing.db")
     try:
         c=conn.cursor()
-        for fillings in fNameEN.get(),lNameEN.get(),uNameEN.get():
-            c.execute(f"INSERT INTO primary VALUES ({fillings})")
+        c.execute(f"INSERT INTO primary VALUES ({fNameEN.get()}, {lNameEN.get()},{uNameEN.get()})")
         conn.commit()
         print("Your record has added successfully")
     except:
@@ -28,7 +27,7 @@ def displayRecord():
     conn=psql.connect(path+"Quizzing.db")
     try:
         c=conn.cursor()
-        c.execute("select * from primary")
+        c.execute("SELECT * FROM primary")
         records=c.fetchall()
         #as you see the records is a list with tuples inside it
         print(records)
@@ -37,8 +36,6 @@ def displayRecord():
         print_records=''
         for record in records:
             print_records +=str(record[0])+" "+ str(record[1])+" "+str(record[2])+"\n"
-        query_label=Label(main,text=print_records)
-        query_label.grid(row=8,column=0,columnspan=2)
         
         #commit changes
         conn.commit()
