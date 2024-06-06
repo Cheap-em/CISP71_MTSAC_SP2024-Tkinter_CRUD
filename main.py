@@ -2,6 +2,7 @@
 import sqlite3 as psql
 from tkinter import *
 from PIL import ImageTk, Image
+import sys, os
 
 # Start the program
 # Define functions here
@@ -31,11 +32,6 @@ def displayRecord():
         records=c.fetchall()
         #as you see the records is a list with tuples inside it
         print(records)
-        
-        #loop throu results
-        print_records=''
-        for record in records:
-            print_records +=str(record[0])+" "+ str(record[1])+" "+str(record[2])+"\n"
         
         #commit changes
         conn.commit()
